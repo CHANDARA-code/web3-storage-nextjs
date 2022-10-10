@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from 'react'
 import { Web3Storage } from 'web3.storage'
-
+import { createContext } from 'react';
 export default function Home () {
   const [messages, showMessage] = useReducer((msgs, m) => msgs.concat(m), [])
   const [token, setToken] = useState('')
@@ -12,6 +12,7 @@ export default function Home () {
 
     showMessage('> 📦 creating web3.storage client')
     const client = new Web3Storage({ token })
+    console.log("client:",client)
 
     showMessage('> 🤖 chunking and hashing the files (in your browser!) to calculate the Content ID')
     const cid = await client.put(files, {
